@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnSpeed: 5
-  runSpeed: 3
+  runSpeed: 8
   mentosCount: 0
 --- !u!1 &267960088
 GameObject:
