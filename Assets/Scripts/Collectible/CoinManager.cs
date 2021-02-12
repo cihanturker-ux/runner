@@ -17,7 +17,7 @@ public class CoinManager : MonoBehaviour
         coin += amount;
         mentosText = coin.ToString();
 
-
+        //Toplanan mentoslara göre coin eklenebilecek komutlar yazılacak
         PlayerPrefs.SetInt("mentos score değeri", coin);
     }
 }
