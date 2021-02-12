@@ -12,7 +12,7 @@ public class CameraFollow : MonoBehaviour
     //Kameranın bizi takip etme hızı
     public float followHeightSpeed = 2f;
 
-    private Transform Player;
+    public Transform Player;
     
     //hedef yüksekliğimiz
     private float targetHeight;
@@ -28,7 +28,7 @@ public class CameraFollow : MonoBehaviour
          private Transform Player olarak belirlediğimiz değişkenimizi
          Karakterimizin transofrmuna eşitliyoruz. 
          */
-        Player = GameObject.FindGameObjectWithTag("Player").transform;
+       
     }
     
     void Update()
