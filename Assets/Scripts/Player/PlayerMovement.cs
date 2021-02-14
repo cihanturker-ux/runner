@@ -38,7 +38,7 @@ namespace thirtwo.Scripts.PlayerController
         private void Move()
         {
             rb.AddForce(0, 0, runSpeed, ForceMode.Force);
-            rb.AddForce(direction * Time.fixedDeltaTime * turnSpeed, ForceMode.Impulse);
+            rb.AddForce(direction * Time.fixedDeltaTime * turnSpeed, ForceMode.VelocityChange);
         }
 
         private void OnCollisionEnter(Collision collision)
