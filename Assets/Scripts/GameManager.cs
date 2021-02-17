@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static bool isGameStarted = false;
+    public static int coin = 0;
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
