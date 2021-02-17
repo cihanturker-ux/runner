@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:Assets/Scenes/New Scene.unity.meta
 guid: 2f4ac59565aa3de49a9dbef7b8aa1627
+=======
+guid: 958da0d1f0bf6bc4b87478453ab600fa
+>>>>>>> Stashed changes:Assets/Scenes/mainScene.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
