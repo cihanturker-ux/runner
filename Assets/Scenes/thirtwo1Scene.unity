@@ -458,6 +458,7 @@ GameObject:
   - component: {fileID: 508343869}
   - component: {fileID: 508343868}
   - component: {fileID: 508343867}
+  - component: {fileID: 508343871}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Obstacle
@@ -539,6 +540,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &508343871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508343866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c8fd7cd4f154e4293e1559818a20ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationTime: 0.1
+  rotationSpeed: 300
 --- !u!1 &516785618
 GameObject:
   m_ObjectHideFlags: 0
