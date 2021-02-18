@@ -72,32 +72,35 @@ namespace thirtwo.Scripts.PlayerController
             }
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
-
-            if (collision.collider.tag == "Obstacle")
+            if (other.tag == "Collectible")
+            {
+                transform.GetChild(0).GetChild(mentosCount).gameObject.SetActive(true);
+                mentosCount++;
+                Debug.Log(mentosCount);
+                other.gameObject.SetActive(false);
+                //toplama animasyonu
+               
+            }
+          
+        }
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.tag == "Obstacle")
             {
                 if (mentosCount > 0)
                 {
-                    collision.gameObject.SetActive(false);
+                    mentosCount--;
+                    Debug.Log(mentosCount);
                     //çarpma animasyonu
-                    transform.GetChild(mentosCount).gameObject.SetActive(false);
+                    transform.GetChild(0).GetChild(mentosCount).gameObject.SetActive(false);
                 }
                 else
                 {
                     GameManager.isGameStarted = false;
                     // yanma animasyonu vs.
                 }
-            }
-        }
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.tag == "Collectible")
-            {
-                mentosCount++;
-                other.gameObject.SetActive(false);
-                //toplama animasyonu
-                transform.GetChild(mentosCount).gameObject.SetActive(true);
             }
         }
     }
