@@ -3,6 +3,7 @@
 namespace thirtwo.Scripts.PlayerController
 {
     [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(AudioSource))]
     public class NewPlayerMovement : MonoBehaviour
     {
         [Header("Components")]
@@ -15,11 +16,16 @@ namespace thirtwo.Scripts.PlayerController
         private float mouseStart;
         public int mentosCount;
         private Animator anim;
-
+        private AudioSource audioSource;
+        [Header("Sesler")]
+        [SerializeField] private AudioClip pickMentosSound;
+        [SerializeField] private AudioClip obstacleTackleSound;
+        [SerializeField] private AudioClip confettiSound;
         private void Start()
         {
             rb = GetComponent<Rigidbody>();
             anim = GetComponent<Animator>();
+            audioSource = GetComponent<AudioSource>();
 
         }
         private void Update()
@@ -84,7 +90,7 @@ namespace thirtwo.Scripts.PlayerController
                 Debug.Log(mentosCount);
                 other.gameObject.SetActive(false);
                 //toplama animasyonu
-
+                audioSource.PlayOneShot(pickMentosSound);
             }
 
         }
@@ -101,6 +107,7 @@ namespace thirtwo.Scripts.PlayerController
                         //çarpma animasyonu
                         transform.GetChild(0).GetChild(mentosCount).gameObject.SetActive(false);
                         anim.SetTrigger("takilma");
+                        audioSource.PlayOneShot(obstacleTackleSound);
                     }
                 }
                 else
@@ -110,6 +117,11 @@ namespace thirtwo.Scripts.PlayerController
                     anim.Play("Lose");
                 }
             }
+        }
+
+        public void ConfettiSound()
+        {
+            audioSource.PlayOneShot(confettiSound);
         }
     }
 }
