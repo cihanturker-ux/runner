@@ -3,7 +3,7 @@
 namespace thirtwo.Scripts.PlayerController
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class NewPlayerMovement : MonoBehaviour
+    public class NewPlayerMovement1 : MonoBehaviour
     {
         [Header("Components")]
         private Rigidbody rb;
@@ -20,12 +20,11 @@ namespace thirtwo.Scripts.PlayerController
         {
             rb = GetComponent<Rigidbody>();
             anim = GetComponent<Animator>();
-
         }
         private void Update()
         {
             if (!GameManager.isGameStarted)// if game not started it will return
-                return;
+                return;  
 
             movementDelta = Vector3.forward * forwardSpeed;
             if (Input.GetMouseButtonDown(0))
@@ -45,16 +44,14 @@ namespace thirtwo.Scripts.PlayerController
                     delta = Mathf.Sign(delta);
                 }
                 movementDelta += Vector3.right * horizontalSpeed * delta;
-
+                
             }
             GameField();
         }
         private void FixedUpdate()
         {
             if (!GameManager.isGameStarted) return; // if game not started it will return
-
             Move();
-
         }
 
         private void Move()
@@ -75,40 +72,38 @@ namespace thirtwo.Scripts.PlayerController
             }
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnCollisionEnter(Collision collision)
         {
-            if (other.tag == "Collectible")
-            {
-                transform.GetChild(0).GetChild(mentosCount).gameObject.SetActive(true);
-                mentosCount++;
-                Debug.Log(mentosCount);
-                other.gameObject.SetActive(false);
-                //toplama animasyonu
 
-            }
-
-        }
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.tag == "Obstacle")
+            if (collision.collider.tag == "Obstacle")
             {
                 if (mentosCount > 0)
                 {
+                    
+                    //çarpma animasyonu
                     if (!anim.IsInTransition(0) && anim.GetFloat("Run") == 1.0f)
                     {
-                        mentosCount--;
-                        Debug.Log(mentosCount);
-                        //çarpma animasyonu
-                        transform.GetChild(0).GetChild(mentosCount).gameObject.SetActive(false);
+                        collision.gameObject.SetActive(false);
+                        transform.GetChild(mentosCount).gameObject.SetActive(false);
                         anim.SetTrigger("takilma");
                     }
                 }
                 else
                 {
-                    GameManager.isGameStarted = false;
                     // yanma animasyonu vs.
-                    anim.Play("Lose");
+                        GameManager.isGameStarted = false;
+                        anim.Play("Lose");
                 }
+            }
+        }
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.tag == "Collectible")
+            {
+                mentosCount++;
+                other.gameObject.SetActive(false);
+                //toplama animasyonu
+                transform.GetChild(mentosCount).gameObject.SetActive(true);
             }
         }
     }
