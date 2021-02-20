@@ -31,7 +31,7 @@ namespace thirtwo.Scripts.PlayerController
         }
         private void Update()
         {
-            if (!GameManager.isGameStarted && levelProgress.levelFinish)// if game not started it will return
+            if (!GameManager.isGameStarted || levelProgress.levelFinish)// if game not started it will return
                 return;
 
             movementDelta = Vector3.forward * forwardSpeed;
@@ -51,14 +51,23 @@ namespace thirtwo.Scripts.PlayerController
                 {
                     delta = Mathf.Sign(delta);
                 }
+                if (transform.position.x > 4.7f && delta > 0)
+                {
+                    return;
+                }
+                else if (transform.position.x < -4.4f && delta < 0)
+                {
+                    return;
+                }
                 movementDelta += Vector3.right * horizontalSpeed * delta;
 
             }
-            GameField();
+
         }
         private void FixedUpdate()
         {
-            if (!GameManager.isGameStarted) return; // if game not started it will return
+            if (!GameManager.isGameStarted || levelProgress.levelFinish)
+                return; // if game not started it will return
 
             Move();
 
@@ -68,18 +77,6 @@ namespace thirtwo.Scripts.PlayerController
         {
             rb.MovePosition(rb.position + movementDelta * Time.fixedDeltaTime);
             anim.SetFloat("Run", 1.0f);
-        }
-        private void GameField()
-        {
-            if (transform.position.x > 4.8f)
-            {
-                transform.position = new Vector3(4.8f, transform.position.y, transform.position.z);
-
-            }
-            else if (transform.position.x < -4.8f)
-            {
-                transform.position = new Vector3(-4.8f, transform.position.y, transform.position.z);
-            }
         }
 
         private void OnTriggerEnter(Collider other)

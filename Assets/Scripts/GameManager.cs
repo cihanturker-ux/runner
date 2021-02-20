@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     private AudioSource audioSource;
     [SerializeField] private AudioClip buttonSound;
     public static int coin;
+    private bool isNotStarted = false;
 
     private void Start()
     {
@@ -19,9 +20,10 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !isNotStarted)
         {
             isGameStarted = true;
+            isNotStarted = true;
         }
     }
     public void Restart()

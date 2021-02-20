@@ -17,6 +17,7 @@ public class LevelProgressUI : MonoBehaviour
     private float distance;
     private bool playOnce = false;
     public bool levelFinish = false;
+   [SerializeField] private GameObject colaFoam;
 
     private void Start()
     {
@@ -50,10 +51,15 @@ public class LevelProgressUI : MonoBehaviour
         }
         else if(player.position.z >= endLine.position.z && !playOnce )
         {
+            levelFinish = true;
             playOnce = true;
             Instantiate(confettiEffect, endLinePos, Quaternion.identity);
             player.gameObject.GetComponent<NewPlayerMovement>().ConfettiSound();
-            levelFinish = true;
+            
+        }
+        if (levelFinish)
+        {
+            colaFoam.SetActive(true);
         }
     }
 }
