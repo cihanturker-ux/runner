@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject settingsPanel;
     private AudioSource audioSource;
     [SerializeField] private AudioClip buttonSound;
+    public static int coin;
 
     private void Start()
     {

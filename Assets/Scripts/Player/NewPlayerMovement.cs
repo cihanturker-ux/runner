@@ -21,16 +21,17 @@ namespace thirtwo.Scripts.PlayerController
         [SerializeField] private AudioClip pickMentosSound;
         [SerializeField] private AudioClip obstacleTackleSound;
         [SerializeField] private AudioClip confettiSound;
+        private LevelProgressUI levelProgress;
         private void Start()
         {
             rb = GetComponent<Rigidbody>();
             anim = GetComponent<Animator>();
             audioSource = GetComponent<AudioSource>();
-
+            levelProgress = FindObjectOfType<LevelProgressUI>();
         }
         private void Update()
         {
-            if (!GameManager.isGameStarted)// if game not started it will return
+            if (!GameManager.isGameStarted && levelProgress.levelFinish)// if game not started it will return
                 return;
 
             movementDelta = Vector3.forward * forwardSpeed;

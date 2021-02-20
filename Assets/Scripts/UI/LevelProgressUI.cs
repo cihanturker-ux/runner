@@ -16,6 +16,7 @@ public class LevelProgressUI : MonoBehaviour
     private Vector3 endLinePos;
     private float distance;
     private bool playOnce = false;
+    public bool levelFinish = false;
 
     private void Start()
     {
@@ -52,6 +53,7 @@ public class LevelProgressUI : MonoBehaviour
             playOnce = true;
             Instantiate(confettiEffect, endLinePos, Quaternion.identity);
             player.gameObject.GetComponent<NewPlayerMovement>().ConfettiSound();
+            levelFinish = true;
         }
     }
 }
